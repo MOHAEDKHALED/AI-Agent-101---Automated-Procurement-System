@@ -1,57 +1,62 @@
-##AI Agent 101 - Automated Procurement System
+# AI Agent 101 - Automated Procurement System
+
 <img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/a5b9aa01-627b-4b40-995e-2554f8a6e09f" />
 
 An intelligent multi-agent system built with CrewAI that automates the product procurement process by searching, analyzing, and comparing products across multiple e-commerce platforms.
-Show Image
- #Overview
+
+## Overview
+
 This project demonstrates the power of AI agents working together to automate complex procurement tasks. The system uses multiple specialized agents that collaborate to:
 
-Generate intelligent search queries
-Search across multiple e-commerce platforms
-Extract and analyze product information
-Generate comprehensive procurement reports
+- Generate intelligent search queries
+- Search across multiple e-commerce platforms
+- Extract and analyze product information
+- Generate comprehensive procurement reports
 
- #Architecture
+## Architecture
+
 The system consists of 4 specialized AI agents working in a sequential process:
 
 <img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/17815012-9199-4972-ba78-88e17858bcf2" />
 
- #Features
+## Features
 
-Intelligent Search Query Generation: Automatically generates varied, specific search queries
-Multi-Platform Search: Searches across multiple e-commerce platforms simultaneously
-AI-Powered Web Scraping: Extracts structured product data using ScrapeGraph AI
-Smart Product Ranking: Analyzes and ranks products based on value-for-money
-Professional Reports: Generates detailed HTML procurement reports with Bootstrap styling
-Local LLM Support: Runs on Ollama with LLaMA 3.1 for privacy and cost-efficiency
+- Intelligent Search Query Generation: Automatically generates varied, specific search queries
+- Multi-Platform Search: Searches across multiple e-commerce platforms simultaneously
+- AI-Powered Web Scraping: Extracts structured product data using ScrapeGraph AI
+- Smart Product Ranking: Analyzes and ranks products based on value-for-money
+- Professional Reports: Generates detailed HTML procurement reports with Bootstrap styling
+- Local LLM Support: Runs on Ollama with LLaMA 3.1 for privacy and cost-efficiency
 
- #Prerequisites
+## Prerequisites
 
-Python 3.8+
-Google Colab account (recommended) or local Python environment
-API Keys:
+- Python 3.8+
+- Google Colab account (recommended) or local Python environment
+- API Keys:
+  - Tavily Search API - For web search
+  - ScrapeGraph API - For web scraping
+  - AgentOps API (optional) - For monitoring
 
-Tavily Search API - For web search
-ScrapeGraph API - For web scraping
-AgentOps API (optional) - For monitoring
+## Installation
 
+### Google Colab (Recommended)
 
+1. Open the notebook in Google Colab
+2. Run the installation cells:
 
-🛠️ Installation
-Google Colab (Recommended)
-
-Open the notebook in Google Colab
-Run the installation cells:
-
-python!pip install -U pip
+```python
+!pip install -U pip
 !pip install crewai crewai-tools agentops
 !pip install -qU tavily-python scrapegraph-py
 !pip install ollama
+```
 
-Install and start Ollama server (handled automatically in the notebook)
+3. Install and start Ollama server (handled automatically in the notebook)
 
-Local Installation
-bash# Clone the repository
+### Local Installation
+
+```bash
+# Clone the repository
 git clone https://github.com/yourusername/ai-agent-101.git
 cd ai-agent-101
 
@@ -70,20 +75,34 @@ ollama serve
 
 # Pull the model
 ollama pull llama3.1:8b
-🔧 Configuration
-API Keys Setup
+```
+
+## Configuration
+
+### API Keys Setup
+
 For Google Colab, store your API keys in Colab Secrets:
-pythonfrom google.colab import userdata
+
+```python
+from google.colab import userdata
 
 os.environ["TAVILY_API_KEY"] = userdata.get('tvly-search')
 os.environ["SCRAPEGRAPH_API_KEY"] = userdata.get('scrapegraph')
 os.environ["AGENTOPS_API_KEY"] = userdata.get('agentops-colab')  # Optional
-For local development, create a .env file:
-envTAVILY_API_KEY=your_tavily_api_key
+```
+
+For local development, create a `.env` file:
+
+```env
+TAVILY_API_KEY=your_tavily_api_key
 SCRAPEGRAPH_API_KEY=your_scrapegraph_api_key
 AGENTOPS_API_KEY=your_agentops_api_key  # Optional
-System Parameters
-pythoncrew_results = rankyx_crew.kickoff(
+```
+
+### System Parameters
+
+```python
+crew_results = rankyx_crew.kickoff(
     inputs={
         "product_name": "coffee machine for the office",
         "websites_list": ["www.amazon.eg", "www.jumia.com.eg", "www.noon.com/egypt-en"],
@@ -94,9 +113,14 @@ pythoncrew_results = rankyx_crew.kickoff(
         "top_recommendations_no": 5
     }
 )
-# Usage
-Quick Start
-pythonfrom crewai import Crew, Agent, Task, Process
+```
+
+## Usage
+
+### Quick Start
+
+```python
+from crewai import Crew, Agent, Task, Process
 from langchain_ollama import OllamaLLM
 
 # Initialize LLM
@@ -126,17 +150,23 @@ rankyx_crew = Crew(
 
 # Execute
 results = rankyx_crew.kickoff(inputs={...})
-Output Files
-The system generates 4 output files in the ./ai-agent-output directory:
+```
 
-step_1_suggested_search_queries.json - Generated search queries
-step_2_search_results.json - Search engine results
-step_3_search_results.json - Extracted product details
-step_4_procurement_report.html - Final HTML report
+### Output Files
 
-📊 Output Example
-JSON Output Structure
-json{
+The system generates 4 output files in the `./ai-agent-output` directory:
+
+- `step_1_suggested_search_queries.json` - Generated search queries
+- `step_2_search_results.json` - Search engine results
+- `step_3_search_results.json` - Extracted product details
+- `step_4_procurement_report.html` - Final HTML report
+
+## Output Example
+
+### JSON Output Structure
+
+```json
+{
   "products": [
     {
       "page_url": "https://example.com/product",
@@ -164,49 +194,59 @@ json{
     }
   ]
 }
-HTML Report Sections
+```
 
-Executive Summary: Key findings and recommendations
-Introduction: Purpose and scope
-Methodology: Search and analysis approach
-Findings: Detailed product comparisons with tables
-Analysis: Trends and observations
-Recommendations: Best purchase options
-Conclusion: Final summary
-Appendices: Raw data and supplementary information
+### HTML Report Sections
 
-🤖 Agent Details
-Agent A: Search Query Recommendation Agent
+- Executive Summary: Key findings and recommendations
+- Introduction: Purpose and scope
+- Methodology: Search and analysis approach
+- Findings: Detailed product comparisons with tables
+- Analysis: Trends and observations
+- Recommendations: Best purchase options
+- Conclusion: Final summary
+- Appendices: Raw data and supplementary information
 
-Role: Generate targeted search queries
-Output: List of specific, varied search terms
-Focus: Brand names, models, and technologies
+## Agent Details
 
-Agent B: Search Engine Agent
+### Agent A: Search Query Recommendation Agent
 
-Role: Execute web searches
-Tool: Tavily Search API
-Output: Filtered, high-quality search results
+- Role: Generate targeted search queries
+- Output: List of specific, varied search terms
+- Focus: Brand names, models, and technologies
 
-Agent C: Web Scraping Agent
+### Agent B: Search Engine Agent
 
-Role: Extract product information
-Tool: ScrapeGraph AI
-Output: Structured product data with specifications and pricing
+- Role: Execute web searches
+- Tool: Tavily Search API
+- Output: Filtered, high-quality search results
 
-Agent D: Procurement Report Author Agent
+### Agent C: Web Scraping Agent
 
-Role: Generate professional reports
-Output: HTML report with Bootstrap styling
-Features: Charts, tables, and detailed analysis
+- Role: Extract product information
+- Tool: ScrapeGraph AI
+- Output: Structured product data with specifications and pricing
 
-# Advanced Features
-Knowledge Sources
-pythoncompany_context = StringKnowledgeSource(
+### Agent D: Procurement Report Author Agent
+
+- Role: Generate professional reports
+- Output: HTML report with Bootstrap styling
+- Features: Charts, tables, and detailed analysis
+
+## Advanced Features
+
+### Knowledge Sources
+
+```python
+company_context = StringKnowledgeSource(
     content="Rankyx is a company that provides AI solutions..."
 )
-Custom Tools
-python@tool
+```
+
+### Custom Tools
+
+```python
+@tool
 def search_engine_tool(query: str):
     """Search for products using Tavily API"""
     return search_client.search(query)
@@ -218,63 +258,86 @@ def web_scraping_tool(page_url: str):
         website_url=page_url,
         user_prompt="Extract product details..."
     )
-Structured Output with Pydantic
-pythonclass SingleExtractedProduct(BaseModel):
+```
+
+### Structured Output with Pydantic
+
+```python
+class SingleExtractedProduct(BaseModel):
     page_url: str
     product_title: str
     product_current_price: float
     product_specs: List[ProductSpec]
     agent_recommendation_rank: int
     agent_recommendation_notes: List[str]
-#Performance & Monitoring
+```
 
-AgentOps Integration: Track agent performance and interactions
-Local LLM: Cost-effective with Ollama and LLaMA 3.1
-Scalable: Process multiple products simultaneously
+## Performance & Monitoring
 
-#Best Practices
+- AgentOps Integration: Track agent performance and interactions
+- Local LLM: Cost-effective with Ollama and LLaMA 3.1
+- Scalable: Process multiple products simultaneously
 
-Rate Limiting: Implement delays between requests
-Error Handling: Wrap API calls in try-except blocks
-Data Validation: Use Pydantic models for structured output
-Monitoring: Enable AgentOps for production deployments
-Caching: Store results to avoid redundant API calls
+## Best Practices
 
-#Troubleshooting
-Ollama Server Issues
-bash# Check if Ollama is running
+- Rate Limiting: Implement delays between requests
+- Error Handling: Wrap API calls in try-except blocks
+- Data Validation: Use Pydantic models for structured output
+- Monitoring: Enable AgentOps for production deployments
+- Caching: Store results to avoid redundant API calls
+
+## Troubleshooting
+
+### Ollama Server Issues
+
+```bash
+# Check if Ollama is running
 curl http://127.0.0.1:11434/api/tags
 
 # Restart Ollama
 pkill ollama
 ollama serve
-API Rate Limits
-pythonimport time
+```
+
+### API Rate Limits
+
+```python
+import time
 
 # Add delays between requests
 time.sleep(2)
-Memory Issues in Colab
-python# Clear memory
+```
+
+### Memory Issues in Colab
+
+```python
+# Clear memory
 import gc
 gc.collect()
-# Contributing
+```
+
+## Contributing
+
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-Fork the repository
-Create your feature branch (git checkout -b feature/AmazingFeature)
-Commit your changes (git commit -m 'Add some AmazingFeature')
-Push to the branch (git push origin feature/AmazingFeature)
-Open a Pull Request
+- Fork the repository
+- Create your feature branch (`git checkout -b feature/AmazingFeature`)
+- Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+- Push to the branch (`git push origin feature/AmazingFeature`)
+- Open a Pull Request
 
-# License
-This project is licensed under the MIT License - see the LICENSE file for details.
-🙏 Acknowledgments
+## License
 
-CrewAI - Multi-agent orchestration framework
-Ollama - Local LLM runtime
-Tavily - Web search API
-ScrapeGraph AI - AI-powered web scraping
-LLaMA 3.1 - Open-source language model
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-# Contact
+## Acknowledgments
+
+- CrewAI - Multi-agent orchestration framework
+- Ollama - Local LLM runtime
+- Tavily - Web search API
+- ScrapeGraph AI - AI-powered web scraping
+- LLaMA 3.1 - Open-source language model
+
+## Contact
+
 For questions or support, please open an issue on GitHub or contact mohamedkhaledidris@gmail.com
