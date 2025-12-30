@@ -1,4 +1,6 @@
-AI Agent 101 - Automated Procurement System
+##AI Agent 101 - Automated Procurement System
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/a5b9aa01-627b-4b40-995e-2554f8a6e09f" />
+
 An intelligent multi-agent system built with CrewAI that automates the product procurement process by searching, analyzing, and comparing products across multiple e-commerce platforms.
 Show Image
  #Overview
@@ -11,41 +13,9 @@ Generate comprehensive procurement reports
 
  #Architecture
 The system consists of 4 specialized AI agents working in a sequential process:
-┌─────────────────────────────────────────────────────────────┐
-│                    Procurement Workflow                      │
-├─────────────────────────────────────────────────────────────┤
-│  Agent A                                                     │
-│  ┌──────────────────────────────────────────┐               │
-│  │ Search Query Recommendation Agent        │               │
-│  │ - Generates targeted search queries      │               │
-│  │ - Focuses on specific brands/models      │               │
-│  └──────────────┬───────────────────────────┘               │
-│                 │                                            │
-│                 ▼                                            │
-│  Agent B                                                     │
-│  ┌──────────────────────────────────────────┐               │
-│  │ Search Engine Agent                      │               │
-│  │ - Executes searches via Tavily API       │               │
-│  │ - Filters quality results                │               │
-│  └──────────────┬───────────────────────────┘               │
-│                 │                                            │
-│                 ▼                                            │
-│  Agent C                                                     │
-│  ┌──────────────────────────────────────────┐               │
-│  │ Web Scraping Agent                       │               │
-│  │ - Extracts product details               │               │
-│  │ - Analyzes specifications                │               │
-│  │ - Ranks recommendations                  │               │
-│  └──────────────┬───────────────────────────┘               │
-│                 │                                            │
-│                 ▼                                            │
-│  Agent D                                                     │
-│  ┌──────────────────────────────────────────┐               │
-│  │ Procurement Report Author Agent          │               │
-│  │ - Generates professional HTML reports    │               │
-│  │ - Includes analysis and recommendations  │               │
-│  └──────────────────────────────────────────┘               │
-└─────────────────────────────────────────────────────────────┘
+
+<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/17815012-9199-4972-ba78-88e17858bcf2" />
+
  #Features
 
 Intelligent Search Query Generation: Automatically generates varied, specific search queries
